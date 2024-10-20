@@ -1,42 +1,87 @@
-import React, { Suspense } from 'react';
-import { Canvas } from 'react-three-fiber';
-import { OrbitControls } from '@react-three/drei';
-import { Shield, Lock, Code } from 'lucide-react';
-import CyberSphere from './components/CyberSphere';
+import React, { useState, useEffect } from 'react';
+import { useSpring, animated } from 'react-spring';
+import { useInView } from 'react-intersection-observer';
 import Header from './components/Header';
+import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
+import NetworkBackground from './components/NetworkBackground';
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 3000);
+  }, []);
+
+  const fadeIn = useSpring({
+    opacity: loading ? 0 : 1,
+    config: { duration: 1000 },
+  });
+
+  const [heroRef, heroInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const [aboutRef, aboutInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const [skillsRef, skillsInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const [projectsRef, projectsInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const [contactRef, contactInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-900">
+        <div className="text-cyan-400 text-2xl font-mono typing-effect">
+          Initializing secure connection...
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <Header />
-      <main>
-        <section className="h-screen relative">
-          <Canvas className="absolute inset-0">
-            <Suspense fallback={null}>
-              <CyberSphere />
-              <OrbitControls enableZoom={false} />
-            </Suspense>
-          </Canvas>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="text-5xl font-bold mb-4">Niranjan Epili</h1>
-              <p className="text-2xl">Ethical hacker & Google Certfied Cybersecurity Professional </p>
-            </div>
-          </div>
-        </section>
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
-      <footer className="bg-gray-800 text-center py-4">
-        <p>&copy; 2024-25 Niranjan Epili. All rights reserved.</p>
-      </footer>
-    </div>
+    <animated.div style={fadeIn} className="relative min-h-screen">
+      <NetworkBackground />
+      <div className="relative z-10">
+        <Header />
+        <main>
+          <section ref={heroRef}>
+            <Hero inView={heroInView} />
+          </section>
+          <section ref={aboutRef} className="py-20">
+            <About inView={aboutInView} />
+          </section>
+          <section ref={skillsRef} className="py-20 bg-gray-800">
+            <Skills inView={skillsInView} />
+          </section>
+          <section ref={projectsRef} className="py-20">
+            <Projects inView={projectsInView} />
+          </section>
+          <section ref={contactRef} className="py-20 bg-gray-800">
+            <Contact inView={contactInView} />
+          </section>
+        </main>
+        <Footer />
+      </div>
+    </animated.div>
   );
 }
 

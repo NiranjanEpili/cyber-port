@@ -1,55 +1,100 @@
-import React from 'react';
-import { Mail, Linkedin, Github } from 'lucide-react';
+import React, { useState } from 'react';
+import { useSpring, animated } from 'react-spring';
+import { Mail, Linkedin, Github, Twitter } from 'lucide-react';
 
-const Contact: React.FC = () => {
+interface ContactProps {
+  inView: boolean;
+}
+
+const Contact: React.FC<ContactProps> = ({ inView }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const animation = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0)' : 'translateY(50px)',
+    config: { duration: 1000 },
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', { name, email, message });
+    setName('');
+    setEmail('');
+    setMessage('');
+  };
+
   return (
-    <section id="contact" className="py-20 bg-gray-900">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-8">Contact</h2>
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="md:w-1/2 mb-8 md:mb-0">
-            <p className="text-lg mb-4">
-              Interested in working together or have a question? Feel free to reach out!
-            </p>
-            <div className="flex items-center mb-4">
-              <Mail className="h-6 w-6 mr-2" />
-              <a href="mailto:niranjanepili@outlook.in" className="text-green-500 hover:text-green-400">
-                Niranjan Epili
-              </a>
+    <animated.div style={animation} className="container mx-auto px-4" id="contact">
+      <h2 className="text-4xl font-bold mb-12 text-center text-cyber-primary">Get in Touch</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-cyber-secondary mb-1">Name</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="w-full px-3 py-2 bg-cyber-bg text-cyber-text rounded-md focus:outline-none focus:ring-2 focus:ring-cyber-primary"
+              />
             </div>
-            <div className="flex items-center mb-4">
-              <Linkedin className="h-6 w-6 mr-2" />
-              <a href="https://linkedin.com/in/niranjanepili" target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-400">
-                Niranjan Epili
-              </a>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-cyber-secondary mb-1">Email</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full px-3 py-2 bg-cyber-bg text-cyber-text rounded-md focus:outline-none focus:ring-2 focus:ring-cyber-primary"
+              />
             </div>
-            <div className="flex items-center">
-              <Github className="h-6 w-6 mr-2" />
-              <a href="https://github.com/niranjanepili" target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-400">
-                Niranjan Epili
-              </a>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-cyber-secondary mb-1">Message</label>
+              <textarea
+                id="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+                rows={4}
+                className="w-full px-3 py-2 bg-cyber-bg text-cyber-text rounded-md focus:outline-none focus:ring-2 focus:ring-cyber-primary"
+              ></textarea>
             </div>
-          </div>
-          <div className="md:w-1/2">
-            <form className="bg-gray-800 p-6 rounded-lg shadow-lg">
-              <div className="mb-4">
-                <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
-                <input type="text" id="name" name="name" className="w-full px-3 py-2 bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
-                <input type="email" id="email" name="email" className="w-full px-3 py-2 bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
-                <textarea id="message" name="message" rows={4} className="w-full px-3 py-2 bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
-              </div>
-              <button type="submit" className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300">Send Message</button>
-            </form>
+            <button
+              type="submit"
+              className="w-full bg-cyber-primary text-cyber-bg py-2 px-4 rounded-md hover:bg-cyber-secondary transition duration-300"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+        <div>
+          <h3 className="text-2xl font-semibold mb-6 text-cyber-secondary">Connect with Me</h3>
+          <div className="space-y-4">
+            <a href="mailto:johndoe@example.com" className="flex items-center text-cyber-text hover:text-cyber-primary">
+              <Mail className="w-6 h-6 mr-3" />
+              johndoe@example.com
+            </a>
+            <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener noreferrer" className="flex items-center text-cyber-text hover:text-cyber-primary">
+              <Linkedin className="w-6 h-6 mr-3" />
+              LinkedIn
+            </a>
+            <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer" className="flex items-center text-cyber-text hover:text-cyber-primary">
+              <Github className="w-6 h-6 mr-3" />
+              GitHub
+            </a>
+            <a href="https://twitter.com/johndoe" target="_blank" rel="noopener noreferrer" className="flex items-center text-cyber-text hover:text-cyber-primary">
+              <Twitter className="w-6 h-6 mr-3" />
+              Twitter
+            </a>
           </div>
         </div>
       </div>
-    </section>
+    </animated.div>
   );
 };
 

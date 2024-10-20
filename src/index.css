@@ -2,21 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Inter', sans-serif;
-}
-
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  body {
+    @apply bg-cyber-bg text-cyber-text;
   }
 }
 
 @layer components {
-  .btn {
-    @apply px-4 py-2 rounded-md transition duration-300;
+  .glow-text {
+    @apply transition-all duration-300 ease-in-out;
   }
-  .btn-primary {
-    @apply bg-green-500 text-white hover:bg-green-600;
+  
+  .glow-text:hover {
+    @apply text-cyber-primary shadow-lg shadow-cyber-primary/50;
   }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.typing-effect {
+  overflow: hidden;
+  border-right: .15em solid #00ff00;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #00ff00; }
 }

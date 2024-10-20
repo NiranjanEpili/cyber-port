@@ -1,32 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSpring, animated } from 'react-spring';
 
-const About: React.FC = () => {
+interface AboutProps {
+  inView: boolean;
+}
+
+const About: React.FC<AboutProps> = ({ inView }) => {
+  const [text, setText] = useState('');
+  const fullText = "I'm a passionate cybersecurity professional with expertise in ethical hacking and full-stack development. My mission is to make the digital world a safer place by identifying vulnerabilities and developing robust security solutions.";
+
+  useEffect(() => {
+    if (inView) {
+      let i = 0;
+      const typingInterval = setInterval(() => {
+        setText(fullText.slice(0, i));
+        i++;
+        if (i > fullText.length) {
+          clearInterval(typingInterval);
+        }
+      }, 50);
+      return () => clearInterval(typingInterval);
+    }
+  }, [inView]);
+
+  const animation = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0)' : 'translateY(50px)',
+    config: { duration: 1000 },
+  });
+
   return (
-    <section id="about" className="py-20 bg-gray-800">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-8">About Me</h2>
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-8 md:mb-0">
-            <img
-              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-              alt="John Doe"
-              className="rounded-lg shadow-lg"
-            />
-          </div>
-          <div className="md:w-1/2 md:pl-8">
-            <p className="text-lg mb-4">
-              I'm Niranjan Epili, a passionate cybersecurity expert and ethical hacker with over 10 years of experience in protecting digital assets and uncovering vulnerabilities.
-            </p>
-            <p className="text-lg mb-4">
-              My mission is to make the digital world a safer place by identifying and mitigating security risks before they can be exploited by malicious actors.
-            </p>
-            <p className="text-lg">
-              When I'm not securing networks or conducting penetration tests, you can find me participating in CTF competitions or mentoring the next generation of cybersecurity professionals.
-            </p>
-          </div>
-        </div>
+    <animated.div style={animation} className="container mx-auto px-4" id="about">
+      <h2 className="text-4xl font-bold mb-8 text-center text-cyber-primary">About Me</h2>
+      <div className="bg-cyber-surface p-8 rounded-lg shadow-lg">
+        <p className="text-lg leading-relaxed font-mono text-cyber-text">
+          {text}
+          <span className="animate-pulse text-cyber-primary">|</span>
+        </p>
       </div>
-    </section>
+    </animated.div>
   );
 };
 
