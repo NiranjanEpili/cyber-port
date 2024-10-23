@@ -5,10 +5,10 @@ const Footer: React.FC = () => {
     <footer className="bg-cyber-surface py-8">
       <div className="container mx-auto px-4 text-center">
         <p className="text-cyber-text">
-          &copy; {new Date().getFullYear()} John Doe. All rights reserved.
+          &copy; {new Date().getFullYear()} Niranjan Epili. All rights reserved.
         </p>
         <p className="text-cyber-secondary mt-2">
-          Cybersecurity Expert & Ethical Hacker
+          Google Certified Cybersecurity Expert & Ethical Hacker
         </p>
       </div>
     </footer>

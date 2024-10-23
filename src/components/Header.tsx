@@ -7,7 +7,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <Shield className="text-cyber-primary mr-2" />
-          <span className="text-xl font-bold text-cyber-text">CyberPortfolio</span>
+          <span className="text-xl font-bold text-cyber-text">Niranjan Epili</span>
         </div>
         <nav>
           <ul className="flex space-x-6">

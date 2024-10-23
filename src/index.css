@@ -3,8 +3,15 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-cyber-bg text-cyber-text;
+  html, body {
+    @apply bg-cyber-bg text-cyber-text min-h-screen;  /* Your current body styles */
+    overflow-y: scroll;  /* Enable scrolling */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, WebKit browsers */
   }
 }
 
@@ -12,11 +19,12 @@
   .glow-text {
     @apply transition-all duration-300 ease-in-out;
   }
-  
+
   .glow-text:hover {
-    @apply text-cyber-primary shadow-lg shadow-cyber-primary/50;
+    @apply text-cyber-primary shadow-xl shadow-cyber-primary/50 transform scale-105;
   }
 }
+
 
 @keyframes typing {
   from { width: 0 }

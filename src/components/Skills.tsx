@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSpring, animated } from 'react-spring';
-import { Code, Shield, Server, Database } from 'lucide-react';
+import { Code, Shield, Server, Database, Cloud, Globe } from 'lucide-react';
 
 interface SkillsProps {
   inView: boolean;
@@ -18,6 +18,8 @@ const Skills: React.FC<SkillsProps> = ({ inView }) => {
     { name: 'Security', icon: Shield, items: ['Penetration Testing', 'Vulnerability Assessment', 'Incident Response'] },
     { name: 'Networking', icon: Server, items: ['TCP/IP', 'Firewalls', 'VPNs', 'IDS/IPS'] },
     { name: 'Databases', icon: Database, items: ['SQL', 'MongoDB', 'Redis', 'Elasticsearch'] },
+    { name: 'Cloud', icon: Cloud, items: ['AWS', 'Azure', 'Google Cloud', 'Docker'] },
+    { name: 'Web Development', icon: Globe, items: ['HTML/CSS', 'React', 'Django'] },
   ];
 
   return (

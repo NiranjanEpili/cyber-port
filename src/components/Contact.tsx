@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useSpring, animated } from 'react-spring';
-import { Mail, Linkedin, Github, Twitter } from 'lucide-react';
+import { Mail, Linkedin, Github } from 'lucide-react';
+import emailjs from 'emailjs-com';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 
 interface ContactProps {
   inView: boolean;
@@ -19,10 +22,32 @@ const Contact: React.FC<ContactProps> = ({ inView }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', { name, email, message });
-    setName('');
-    setEmail('');
-    setMessage('');
+
+    // EmailJS send function
+    emailjs
+      .send(
+        'service_angt0ij', // EmailJS service ID
+        'template_k66orvj', // EmailJS template ID
+        {
+          from_name: name,
+          reply_to: email,
+          message: message,
+        },
+        'M0LzPj7JlEpnL4-1A' // Your EmailJS user ID
+      )
+      .then(
+        (result) => {
+          console.log('Email successfully sent!', result.text);
+          toast.success("Your message has been sent! We will contact you soon."); // Success toast
+          setName('');
+          setEmail('');
+          setMessage('');
+        },
+        (error) => {
+          console.log('Failed to send email.', error.text);
+          toast.error("Failed to send message. Please try again."); // Error toast
+        }
+      );
   };
 
   return (
@@ -75,25 +100,22 @@ const Contact: React.FC<ContactProps> = ({ inView }) => {
         <div>
           <h3 className="text-2xl font-semibold mb-6 text-cyber-secondary">Connect with Me</h3>
           <div className="space-y-4">
-            <a href="mailto:johndoe@example.com" className="flex items-center text-cyber-text hover:text-cyber-primary">
+            <a href="mailto:niranjanepili@outlook.in" className="flex items-center text-cyber-text hover:text-cyber-primary">
               <Mail className="w-6 h-6 mr-3" />
-              johndoe@example.com
+              niranjanepili@outlook.in
             </a>
-            <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener noreferrer" className="flex items-center text-cyber-text hover:text-cyber-primary">
+            <a href="https://www.linkedin.com/in/niranjan-epili-24509528b/" target="_blank" rel="noopener noreferrer" className="flex items-center text-cyber-text hover:text-cyber-primary">
               <Linkedin className="w-6 h-6 mr-3" />
               LinkedIn
             </a>
-            <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer" className="flex items-center text-cyber-text hover:text-cyber-primary">
+            <a href="https://github.com/NiranjanEpili" target="_blank" rel="noopener noreferrer" className="flex items-center text-cyber-text hover:text-cyber-primary">
               <Github className="w-6 h-6 mr-3" />
               GitHub
-            </a>
-            <a href="https://twitter.com/johndoe" target="_blank" rel="noopener noreferrer" className="flex items-center text-cyber-text hover:text-cyber-primary">
-              <Twitter className="w-6 h-6 mr-3" />
-              Twitter
             </a>
           </div>
         </div>
       </div>
+      <ToastContainer /> {/* Toast container for notifications */}
     </animated.div>
   );
 };

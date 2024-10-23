@@ -50,32 +50,32 @@ function App() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-900">
-        <div className="text-cyan-400 text-2xl font-mono typing-effect">
+        <div className="text-cyan-400 text-xl sm:text-2xl lg:text-3xl font-mono typing-effect">
           Initializing secure connection...
         </div>
       </div>
     );
   }
-
+  
   return (
     <animated.div style={fadeIn} className="relative min-h-screen">
       <NetworkBackground />
       <div className="relative z-10">
         <Header />
-        <main>
-          <section ref={heroRef}>
+        <main className="px-4 sm:px-8 lg:px-16">
+          <section ref={heroRef} className="mb-12">
             <Hero inView={heroInView} />
           </section>
-          <section ref={aboutRef} className="py-20">
+          <section ref={aboutRef} className="py-10 sm:py-20">
             <About inView={aboutInView} />
           </section>
-          <section ref={skillsRef} className="py-20 bg-gray-800">
+          <section ref={skillsRef} className="py-10 sm:py-20 bg-gray-800">
             <Skills inView={skillsInView} />
           </section>
-          <section ref={projectsRef} className="py-20">
+          <section ref={projectsRef} className="py-10 sm:py-20">
             <Projects inView={projectsInView} />
           </section>
-          <section ref={contactRef} className="py-20 bg-gray-800">
+          <section ref={contactRef} className="py-10 sm:py-20 bg-gray-800">
             <Contact inView={contactInView} />
           </section>
         </main>

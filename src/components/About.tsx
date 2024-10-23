@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
+import './simulation.css'; // Assuming glitch effect styles are here
 
 interface AboutProps {
   inView: boolean;
@@ -18,7 +19,7 @@ const About: React.FC<AboutProps> = ({ inView }) => {
         if (i > fullText.length) {
           clearInterval(typingInterval);
         }
-      }, 50);
+      }, 50); // Typing speed
       return () => clearInterval(typingInterval);
     }
   }, [inView]);
@@ -26,14 +27,16 @@ const About: React.FC<AboutProps> = ({ inView }) => {
   const animation = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? 'translateY(0)' : 'translateY(50px)',
-    config: { duration: 1000 },
+    config: { tension: 200, friction: 30 },
   });
 
   return (
     <animated.div style={animation} className="container mx-auto px-4" id="about">
-      <h2 className="text-4xl font-bold mb-8 text-center text-cyber-primary">About Me</h2>
-      <div className="bg-cyber-surface p-8 rounded-lg shadow-lg">
-        <p className="text-lg leading-relaxed font-mono text-cyber-text">
+      <h2 className="text-4xl font-bold mb-8 text-center glitch" data-text="About Me">
+        About Me
+      </h2>
+      <div className="bg-cyber-surface p-8 rounded-lg shadow-lg glitch-box">
+        <p className="text-lg leading-relaxed font-mono text-cyber-text glitch-text">
           {text}
           <span className="animate-pulse text-cyber-primary">|</span>
         </p>

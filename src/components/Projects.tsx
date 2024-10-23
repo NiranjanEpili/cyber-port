@@ -15,25 +15,11 @@ const Projects: React.FC<ProjectsProps> = ({ inView }) => {
 
   const projects = [
     {
-      title: 'SecureNet',
-      description: 'A comprehensive network security analysis tool',
-      technologies: ['Python', 'Scapy', 'Flask'],
-      github: 'https://github.com/yourusername/securenet',
-      demo: 'https://securenet-demo.netlify.app',
-    },
-    {
-      title: 'CryptoGuard',
-      description: 'End-to-end encryption library for secure communication',
-      technologies: ['JavaScript', 'Node.js', 'WebCrypto API'],
-      github: 'https://github.com/yourusername/cryptoguard',
-      demo: 'https://cryptoguard-demo.netlify.app',
-    },
-    {
-      title: 'VulnScanner',
-      description: 'Automated vulnerability scanner for web applications',
-      technologies: ['Python', 'BeautifulSoup', 'SQLAlchemy'],
-      github: 'https://github.com/yourusername/vulnscanner',
-      demo: 'https://vulnscanner-demo.netlify.app',
+      title: 'Advance Vulnerability Scanner Dashboard',
+      description: 'This is a Streamlit-based web application that performs advanced vulnerability scanning for URLs and files.',
+      technologies: ["Python 3.7+","Streamlit","Requests","Python-Whois","Cryptography","Pandas","lsxWriter","Python-dotenv"],
+      github: 'https://github.com/NiranjanEpili/Advance-Vulnerability-Scanner-Dashboard',
+      demo: 'https://niranjan-epili-advance-vulnerability-scanner-dashboa-app-6vtrvv.streamlit.app/',
     },
   ];
 

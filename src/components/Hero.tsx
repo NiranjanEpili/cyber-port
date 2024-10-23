@@ -19,10 +19,10 @@ const Hero: React.FC<HeroProps> = ({ inView }) => {
       className="relative min-h-screen flex items-center justify-center text-center z-10"
       id="home"
     >
-      <div className="bg-cyber-surface bg-opacity-70 p-8 rounded-lg backdrop-filter backdrop-blur-sm">
+      <div>
         <Terminal className="text-cyber-primary w-24 h-24 mx-auto mb-8" />
-        <h1 className="text-5xl font-bold mb-4 text-cyber-text">John Doe</h1>
-        <p className="text-2xl text-cyber-secondary mb-8">Cybersecurity Expert & Ethical Hacker</p>
+        <h1 className="text-5xl font-bold mb-4 text-cyber-text">Niranjan Epili</h1>
+        <p className="text-2xl text-cyber-secondary mb-8">Google Certified Cybersecurity Professional & Ethical Hacker</p>
         <p className="text-xl text-cyber-text max-w-2xl mx-auto">
           Securing digital frontiers and pushing the boundaries of ethical hacking.
         </p>
