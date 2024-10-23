@@ -27,7 +27,6 @@ Cyber Port is a personal portfolio project designed to showcase my skills, proje
 - PostCSS
 - CSS
 - JavaScript
-- [Additional technologies or frameworks you used]
 
 ## License
 This project is not licensed for public use. All rights reserved.
