@@ -1,6 +1,6 @@
 # Portfolio Project License
 
-**Copyright (c) [Niranjan Epili]  [2024]**
+**Copyright (c) Niranjan Epili, 2024**
 
 All Rights Reserved.
 
@@ -9,11 +9,8 @@ All Rights Reserved.
 This project is licensed under the following terms:
 
 1. **No Use**: No person or entity may use this project for any purpose without express written permission from the copyright holder.
-
 2. **No Modification**: No person or entity may modify, adapt, or create derivative works based on this project.
-
 3. **No Distribution**: No person or entity may distribute copies of this project, in any form, without express written permission from the copyright holder.
-
 4. **No Commercial Use**: This project may not be used for commercial purposes without express written permission from the copyright holder.
 
 ## Disclaimer
@@ -22,4 +19,4 @@ This project is provided "as-is," without any warranty or guarantee of any kind.
 
 ## Contact Information
 
-For permissions or inquiries, please contact [niranjanepili@outlook.in].
+For permissions or inquiries, please contact: niranjanepili@outlook.in
