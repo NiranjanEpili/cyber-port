@@ -32,6 +32,6 @@ Cyber Port is a personal portfolio project designed to showcase my skills, proje
 This project is not licensed for public use. All rights reserved.
 
 ## Contact
-Feel free to reach out to me at [your email address] for any inquiries or collaborations.
+Feel free to reach out to me at [niranjanepili@outlook.in] for any inquiries or collaborations.
 
 Thank you for visiting my portfolio!
