@@ -21,6 +21,20 @@ const Projects: React.FC<ProjectsProps> = ({ inView }) => {
       github: 'https://github.com/NiranjanEpili/Advance-Vulnerability-Scanner-Dashboard',
       demo: 'https://niranjan-epili-advance-vulnerability-scanner-dashboa-app-6vtrvv.streamlit.app/',
     },
+    {
+      title: 'NCompany.',
+      description: 'Startup webiste which is multi ventured company. It is a static website with a contact form.',
+      technologies: ["JavaScript","Vercel","HTML","CSS","Web3forms","Vite"],
+      github:"https://github.com/NiranjanEpili",
+      demo: 'www.ncompanyinc.tech',
+    },
+    {
+      title: 'Diksha Collection',
+      description: 'This is a E-commerce website for a jewellry store. It is a full-stack website',
+      technologies: ["TypeScript","JavaScript","CSS","HTML","Firebase","imgBB"],
+      github: 'https://github.com/NiranjanEpili',
+      demo: 'https://dishacollection.vercel.app/',
+    }
   ];
 
   return (
